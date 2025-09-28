@@ -56,4 +56,84 @@ ax^2 + bx + c = 0
 x1 = 1
 x2 = 2
 ```
+## 2. Задача о рюкзаке героя
+
+### Функционал программы
+
+Программа реализует систему управления инвентарем героя с помощью консольного меню:
+
+### Основные команды:
+- **1. Put an item** - добавить предмет в рюкзак
+- **2. Show content** - показать все предметы в рюкзаке  
+- **3. Drop an item** - удалить конкретный предмет
+- **0. Quit** - выход из программы
+
+### Пример работы программы
+
+```
+Menu:
+1. Put an item
+2. Show content
+3. Drop an item
+0. Quit
+Choice: 1
+Что положить в рюкзак? sword
+
+Menu:
+1. Put an item
+2. Show content
+3. Drop an item
+0. Quit
+Choice: 1
+Что положить в рюкзак? potion
+
+Menu:
+1. Put an item
+2. Show content
+3. Drop an item
+0. Quit
+Choice: 2
+You have sword, potion in the backpack
+
+Menu:
+1. Put an item
+2. Show content
+3. Drop an item
+0. Quit
+Choice: 3
+Drop: sword
+You dropped sword
+
+Menu:
+1. Put an item
+2. Show content
+3. Drop an item
+0. Quit
+Choice: 2
+You have potion in the backpack
+```
+
+### Особенности работы с итераторами
+
+### В функции удаления используется итератор:
+```cpp
+for (auto it = bag.begin(); it != bag.end(); ++it) {
+    if (*it == item) {
+        bag.erase(it);  // Безопасное удаление
+        return;
+    }
+}
+```
+
+### Почему не range-based for?
+- При удалении элемента итераторы становятся невалидными
+- Range-based for не подходит для модификации структуры контейнера
+- Итераторы дают контроль над процессом удаления
+
+### Для простого просмотра можно использовать range-based for:
+```cpp
+for (const auto& item : bag) {
+    cout << item << ", ";  // Безопасно - только чтение
+}
+```
 
