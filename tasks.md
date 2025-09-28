@@ -117,12 +117,8 @@ You have potion in the backpack
 
 ### В функции удаления используется итератор:
 ```cpp
-for (auto it = bag.begin(); it != bag.end(); ++it) {
-    if (*it == item) {
-        bag.erase(it);  // Безопасное удаление
-        return;
-    }
-}
+// Необходимо обойти массив с итераторами, дабы удалить по указалю с помощью .erase()
+for (auto it = bag.begin(); it != bag.end(); ++it) {}
 ```
 
 ### Почему не range-based for?
@@ -132,8 +128,6 @@ for (auto it = bag.begin(); it != bag.end(); ++it) {
 
 ### Для простого просмотра можно использовать range-based for:
 ```cpp
-for (const auto& item : bag) {
-    cout << item << ", ";  // Безопасно - только чтение
-}
+for (const auto& item : bag) {}
 ```
 
